@@ -38,7 +38,42 @@ console.log(selectiveMap([-10, 4, 7, 6, -2, -9], isPositive, square));
 
 function selectiveMap(array, selector, mapper) {
     // Your code here 
+    let newArray = []
+    for (let i = 0; i < array.length; i++){
+        if (selector(array[i])) {
+            newArray.push(mapper(array[i]))
+        }
+        else {
+            newArray.push(array[i])
+        }
+    }
+    return newArray
 }
+
+function isEven(n) {
+    return n % 2 === 0;
+}
+
+function isPositive(n) {
+    return n > 0;
+}
+
+function square(n) {
+    return n * n;
+}
+
+function flipSign(n) {
+    return n * -1;
+}
+
+console.log(selectiveMap([8, 5, 10, 4], isEven, square));
+// [ 64, 5, 100, 16 ]
+
+console.log(selectiveMap([-10, 4, 7, 6, -2, -9], isEven, flipSign));
+// [ 10, -4, 7, -6, 2, -9 ]
+
+console.log(selectiveMap([-10, 4, 7, 6, -2, -9], isPositive, square));
+// [-10, 16, 49, 36, -2, -9]
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 try {
